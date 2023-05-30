@@ -109,37 +109,99 @@ int IsFull(char board[ROW][COL], int row, int col)
 	return 1;
 }
 
-//判断输赢
+//判断输赢 --- 五子棋的判断
 char IsWin(char board[ROW][COL], int row, int col)
 {
-	//赢
-	int i;
-	//行
+	int i, j;
+	//判断每行有五个相同的棋子
+	//假设有6列，COL=col=6，每行五子相同有以下两种可能性
+	// 0 1 2 3 4 5 （列的下标）
+	// X X X X X		（把“X”当作棋子）
+	//   X X X X X
+	//我们要拿五个棋子中的【第一个棋子】去跟【后面的四个棋子】比较一下是否相同
+	//可以看到j的范围在0~1之间，也就是:for (j = 0; j < col - 4; j++)
 	for (i = 0; i < row; i++)
 	{
-		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')
+		for (j = 0; j < col - 4; j++)
 		{
-			return board[i][0];
+			if (board[i][j] == board[i][j + 1] &&
+				board[i][j + 1] == board[i][j + 2] &&
+				board[i][j + 2] == board[i][j + 3] &&
+				board[i][j + 3] == board[i][j + 4] &&
+				board[i][j] != ' ')
+			{
+				return board[i][j];
+			}
 		}
 	}
-	//列
-	for (i = 0; i < col; i++)
+	//判断每列有五个相同的棋子
+	//原理同上，i的范围：for (i = 0; i < row - 4; i++)
+	for (j = 0; j < col; j++)
 	{
-		if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ')
+		for (i = 0; i < row - 4; i++)
 		{
-			return board[0][i];
+			if (board[i][j] == board[i + 1][j] &&
+				board[i + 1][j] == board[i + 2][j] &&
+				board[i + 2][j] == board[i + 3][j] &&
+				board[i + 3][j] == board[i + 4][j] &&
+				board[i][j] != ' ')
+			{
+				return board[i][j];
+			}
 		}
 	}
-	//对角线
-	if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ')
-		return board[0][0];
-	if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ')
-		return board[0][2];
-	//平局
+	//判断\方向有五个相同的棋子
+	//假设有6行6列
+	//   0 1 2 3 4 5  |    0 1 2 3 4 5
+	// 0 X X          |  0
+	// 1   X X        |  1 X X
+	// 2     X X      |  2   X X
+	// 3       X X    |  3     X X
+	// 4         X X  |  4       X X
+	// 5              |  5         X X
+	//判断/方向有五个相同的棋子
+
+	//平局(棋盘被占满还未分出胜负)
 	if (IsFull(board, row, col) == 1)
 	{
 		return 'Q';
 	}
 	//继续
 	return 'C';
+
 }
+
+//判断输赢 --- 三子棋的判断
+//char IsWin(char board[ROW][COL], int row, int col)
+//{
+//	//赢
+//	int i;
+//	//行
+//	for (i = 0; i < row; i++)
+//	{
+//		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ')
+//		{
+//			return board[i][0];
+//		}
+//	}
+//	//列
+//	for (i = 0; i < col; i++)
+//	{
+//		if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ')
+//		{
+//			return board[0][i];
+//		}
+//	}
+//	//对角线
+//	if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ')
+//		return board[0][0];
+//	if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ')
+//		return board[0][2];
+//	//平局
+//	if (IsFull(board, row, col) == 1)
+//	{
+//		return 'Q';
+//	}
+//	//继续
+//	return 'C';
+//}

@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define ROW 3	//棋盘的行数
-#define COL 3	//棋盘的列数
+#define ROW 10	//棋盘的行数
+#define COL 10	//棋盘的列数
 
 //初始化棋盘
 void InitBoard(char board[ROW][COL], int row, int col);
