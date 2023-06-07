@@ -151,7 +151,7 @@ char IsWin(char board[ROW][COL], int row, int col)
 		}
 	}
 	//判断\方向有五个相同的棋子
-	//假设有6行6列
+	//假设有6行6列，有以下四种可能性
 	//   0 1 2 3 4 5  |    0 1 2 3 4 5
 	// 0 X X          |  0
 	// 1   X X        |  1 X X
@@ -159,8 +159,46 @@ char IsWin(char board[ROW][COL], int row, int col)
 	// 3       X X    |  3     X X
 	// 4         X X  |  4       X X
 	// 5              |  5         X X
+	//由于我们要拿五个棋子中的【第一个棋子】去跟【后面的四个棋子】比较
+	//所以(i,j)的可能取值:(0,0) (0,1) (1,0) (1,1)
+	for (i = 0; i < row - 4; i++)
+	{
+		for (j = 0; j < col - 4; j++)
+		{
+			if (board[i][j] == board[i + 1][j + 1] &&
+				board[i + 1][j + 1] == board[i + 2][j + 2] &&
+				board[i + 2][j + 2] == board[i + 3][j + 3] &&
+				board[i + 3][j + 3] == board[i + 4][j + 4] &&
+				board[i][j] != ' ')
+			{
+				return board[i][j];
+			}
+		}
+	}
 	//判断/方向有五个相同的棋子
-
+	//假设有6行6列，同样有以下四种可能性
+	//   0 1 2 3 4 5  |    0 1 2 3 4 5
+	// 0         X X  |  0
+	// 1       X X    |  1         X X
+	// 2     X X      |  2       X X
+	// 3   X X        |  3     X X
+	// 4 X X          |  4   X X
+	// 5              |  5 X X
+	//(i,j)的可能取值:(0,4) (0,5) (1,4) (1,5)
+	for (i = 0; i < row - 4; i++)
+	{
+		for (j = 4; j < col; j++)
+		{
+			if (board[i][j] == board[i + 1][j - 1] &&
+				board[i + 1][j - 1] == board[i + 2][j - 2] &&
+				board[i + 2][j - 2] == board[i + 3][j - 3] &&
+				board[i + 3][j - 3] == board[i + 4][j - 4] &&
+				board[i][j] != ' ')
+			{
+				return board[i][j];
+			}
+		}
+	}
 	//平局(棋盘被占满还未分出胜负)
 	if (IsFull(board, row, col) == 1)
 	{
