@@ -206,7 +206,6 @@ char IsWin(char board[ROW][COL], int row, int col)
 	}
 	//继续
 	return 'C';
-
 }
 
 //判断输赢 --- 三子棋的判断
