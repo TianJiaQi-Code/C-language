@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include <stdio.h>
+#include "game.h"
 
 void menu()
 {
@@ -12,12 +12,27 @@ void menu()
 
 void game()
 {
-
+	char mine[ROWS][COLS];//存放布置好的雷
+	char show[ROWS][COLS];//存放排查出的雷的信息
+	//初始化棋盘
+	//1.mine数组最开始是全'0'
+	//2.show数组最开始是全'*'
+	InitBoard(mine, ROWS, COLS, '0');
+	InitBoard(show, ROWS, COLS, '*');
+	//打印棋盘
+	//DisplayBoard(mine, ROW, COL);
+	DisplayBoard(show, ROW, COL);
+	//1.布置雷
+	SetMine(mine, ROW, COL);
+	//DisplayBoard(mine, ROW, COL);
+	//2.排查雷
+	FindMine(mine, show, ROW, COL);
 }
 
 int main()
 {
 	int input;
+	srand((unsigned int)time(NULL));
 	do
 	{
 		menu();
