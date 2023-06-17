@@ -4,11 +4,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define EASY_COUNT 10
+#define EASY_COUNT 10	//雷的个数
 
-#define ROW 9
-#define COL 9
+#define ROW 9	//雷区的行数
+#define COL 9	//雷区的列数
 
+//二维数组的大小，比雷区大一圈方便计算
 #define ROWS ROW+2
 #define COLS COL+2
 
