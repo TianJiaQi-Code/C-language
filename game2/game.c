@@ -54,6 +54,7 @@ void SetMine(char board[ROWS][COLS], int row, int col)
 	}
 }
 
+//统计(x,y)坐标周围雷的个数
 // (x-1,y-1) (x-1, y ) (x-1,y+1)   |   (1,1) (1,2) (1,3)
 // ( x ,y-1) ( x , y ) ( x ,y+1)   |   (2,1) (2,2) (2.3)
 // (x+1,y-1) (x+1, y ) (x+1,y+1)   |   (3,1) (3,2) (3,3)
@@ -62,6 +63,32 @@ int GetMineCount(char mine[ROWS][COLS], int x, int y)
 	return (mine[x - 1][y] + mine[x - 1][y - 1] + mine[x][y - 1] +
 		mine[x + 1][y - 1] + mine[x + 1][y] + mine[x + 1][y + 1] +
 		mine[x][y + 1] + mine[x - 1][y + 1] - 8 * '0');
+}
+
+//递归展开
+void Expand(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col, int x, int y, int* p_win)
+{
+	if (GetMineCount(mine, x, y) == 0)
+	{
+		show[x][y] = ' ';
+		int i, j;
+		for (i = x - 1; i <= x + 1; i++)
+		{
+			for (j = y - 1; j <= y + 1; j++)
+			{
+				if (show[i][j] == '*' && i > 0 && i <= row && j > 0 && j <= col)
+				{
+					Expand(mine, show, ROW, COL, i, j, p_win);
+				}
+			}
+		}
+	}
+	else
+	{
+		show[x][y] = GetMineCount(mine, x, y) + '0';
+	}
+	//统计已被排查区域个数
+	(*p_win)++;
 }
 
 void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
@@ -82,11 +109,9 @@ void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 			}
 			else if(mine[x][y] == '0' && show[x][y] == '*')
 			{
-				//该位置不是雷，就统计这个坐标周围有几个雷
-				int count = GetMineCount(mine, x, y);
-				show[x][y] = count + '0';
+				//如果该位置没有雷，就展开周围八格，如果被展开的位置还是没有雷，就继续展开
+				Expand(mine, show, ROW, COL, x, y, &win);
 				DisplayBoard(show, ROW, COL);
-				win++;
 				printf("您已排查%d块区域，还有%d块区域待排查\n", win, row * col - EASY_COUNT - win);
 			}
 			else
