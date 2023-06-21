@@ -55,9 +55,9 @@ void SetMine(char board[ROWS][COLS], int row, int col)
 }
 
 //统计(x,y)坐标周围雷的个数
-// (x-1,y-1) (x-1, y ) (x-1,y+1)   |   (1,1) (1,2) (1,3)
-// ( x ,y-1) ( x , y ) ( x ,y+1)   |   (2,1) (2,2) (2.3)
-// (x+1,y-1) (x+1, y ) (x+1,y+1)   |   (3,1) (3,2) (3,3)
+// (x-1,y-1) (x-1, y ) (x-1,y+1)
+// ( x ,y-1) ( x , y ) ( x ,y+1)
+// (x+1,y-1) (x+1, y ) (x+1,y+1)
 int GetMineCount(char mine[ROWS][COLS], int x, int y)
 {
 	return (mine[x - 1][y] + mine[x - 1][y - 1] + mine[x][y - 1] +
@@ -68,23 +68,30 @@ int GetMineCount(char mine[ROWS][COLS], int x, int y)
 //递归展开
 void Expand(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col, int x, int y, int* p_win)
 {
+	//(x,y)周围没有雷
 	if (GetMineCount(mine, x, y) == 0)
 	{
+		//把(x,y)置为空格
 		show[x][y] = ' ';
 		int i, j;
+		//循环找到(x,y)周围的八个坐标
 		for (i = x - 1; i <= x + 1; i++)
 		{
 			for (j = y - 1; j <= y + 1; j++)
 			{
+				//设置条件避免死递归：坐标必须未被排查过，并且不能越界
 				if (show[i][j] == '*' && i > 0 && i <= row && j > 0 && j <= col)
 				{
+					//找到一个新的坐标重复此过程
 					Expand(mine, show, ROW, COL, i, j, p_win);
 				}
 			}
 		}
 	}
+	//(x,y)周围有雷
 	else
 	{
+		//在棋盘上显示出(x,y)周围有几个雷
 		show[x][y] = GetMineCount(mine, x, y) + '0';
 	}
 	//统计已被排查区域个数
