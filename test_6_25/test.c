@@ -1,5 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char str1[] = "\"hello\040world\"";
+	printf("%d %d", strlen(str1), sizeof(str1));
+	return 0;
+}
+
 //1.鸡兔同笼，鸡和兔共100只，共284只脚，求鸡和兔的个数。
 //#include <stdio.h>
 //
