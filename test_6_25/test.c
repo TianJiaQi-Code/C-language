@@ -15,15 +15,17 @@
 //
 //int main()
 //{
+//	//假设有100只鸡，0只兔
 //	int chicken = 100;
 //	int rabbit = 0;
-//	while (chicken >= 0 && rabbit >= 0)
+//	while (chicken >= 0 && rabbit >= 0)//鸡兔的个数不可能为负
 //	{
 //		if (chicken * 2 + rabbit * 4 == 284)
 //		{
 //			printf("鸡有%d只,兔有%d只\n", chicken, rabbit);
 //			break;
 //		}
+//		//鸡-1，兔+1，总数还是100
 //		chicken--;
 //		rabbit++;
 //	}
@@ -36,12 +38,12 @@
 //int main()
 //{
 //	double e = 1;
-//	int factorial = 1;
+//	int n = 1;
 //	int i = 2;
-//	while (1.0 / factorial >= 1e-4)
+//	while (1.0 / n >= 1e-4)//1e-4就是10的负4次方
 //	{
-//		e += 1.0 / factorial;
-//		factorial = factorial * i;
+//		e += 1.0 / n;
+//		n = n * i;
 //		i++;
 //	}
 //	printf("e = %lf\n", e);
@@ -74,6 +76,50 @@
 //}
 
 //4.输入10个短整型数，计算10个短整型数中素数的和。
+#include <stdio.h>
+
+int main()
+{
+	short arr[10] = { 0 };
+	short sum = 0;
+	int i;
+	//1.输入10个短整型数
+	for (i = 0; i < 10; i++)
+	{
+		scanf("%hd", &arr[i]);
+	}
+	//2.遍历数组，判断是否为素数
+	for (i = 0; i < 10; i++)
+	{
+		int flag = 1;//此变量用于判断，flag=1代表是素数，flag=0则不是素数
+		//注意：只有大于1的数字才有可能是素数
+		if (arr[i] > 1)
+		{
+			int j;
+			for (j = 2; j < arr[i]; j++)
+			{
+				//如果被整除，说明该数字不是素数，把flag改为0
+				if (arr[i] % j == 0)
+				{
+					flag = 0;
+				}
+			}
+		}
+		//若该数字小于等于1，则该数字不可能为素数
+		else
+		{
+			flag = 0;
+		}
+		//3.如果是素数，就把他们的和加起来
+		if (flag)
+		{
+			sum += arr[i];
+		}
+	}
+	//4.打印结果
+	printf("sum = %hd\n", sum);
+}
+
 //#include <stdio.h>
 //
 //int main()
@@ -87,20 +133,21 @@
 //	}
 //	for (i = 0; i < 10; i++)
 //	{
-//		int flag = 1;
 //		int j;
 //		for (j = 2; j < arr[i]; j++)
 //		{
 //			if (arr[i] % j == 0)
 //			{
-//				flag = 0;
+//				break;
 //			}
 //		}
-//		if (flag)
+//		if (j >= arr[i])
 //		{
-//			printf("%hd ", arr[i]);
+//			printf("%d %hd ", j, arr[i]);
+//			printf("sum = %hd\n", sum);
 //			sum += arr[i];
 //		}
 //	}
-//	printf("\nsum = %hd\n", sum);
+//	printf("sum = %hd\n", sum);
+//	return 0;
 //}
