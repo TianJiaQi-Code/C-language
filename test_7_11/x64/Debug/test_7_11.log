@@ -1,0 +1,7 @@
+﻿  test.c
+D:\Code\class110\C-language\test_7_11\test.c(15,15): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+D:\Code\class110\C-language\test_7_11\test.c(24,16): warning C4047: “函数”:“const char **”与“char [10]”的间接级别不同
+D:\Code\class110\C-language\test_7_11\test.c(24,12): warning C4024: “my_strcmp”: 形参和实参 1 的类型不同
+D:\Code\class110\C-language\test_7_11\test.c(24,22): warning C4047: “函数”:“const char **”与“char [10]”的间接级别不同
+D:\Code\class110\C-language\test_7_11\test.c(24,18): warning C4024: “my_strcmp”: 形参和实参 2 的类型不同
+  test_7_11.vcxproj -> D:\Code\class110\C-language\test_7_11\x64\Debug\test_7_11.exe
