@@ -145,3 +145,77 @@ void DelContact(Contact* pc)
 	pc->sz--;
 	printf("成功删除联系人\n");
 }
+
+void SearchContact(const Contact* pc)
+{
+	assert(pc);
+	char name[MAX_NAME] = { 0 };
+	printf("请输入要查找人的名字:");
+	scanf("%s", name);
+	int pos = FindByName(pc, name);
+	if (pos == -1)
+		printf("要查找的人不存在\n");
+	else
+	{
+		printf("%-10s\t%-4s\t%-5s\t%-12s\t%-30s\n", "名字", "年龄", "性别", "电话", "地址");
+		//打印数据
+		printf("%-10s\t%-4d\t%-5s\t%-12s\t%-30s\n",
+			pc->data[pos].name,
+			pc->data[pos].age,
+			pc->data[pos].sex,
+			pc->data[pos].tele,
+			pc->data[pos].addr);
+	}
+}
+
+void ModifyContact(Contact* pc)
+{
+	assert(pc);
+	char name[MAX_NAME] = { 0 };
+	printf("请输入要修改人的名字:");
+	scanf("%s", name);
+	int pos = FindByName(pc, name);
+	if (pos == -1)
+		printf("要修改的人不存在\n");
+	else
+	{
+		printf("请输入名字:");
+		scanf("%s", pc->data[pos].name);
+		printf("请输入年龄:");
+		scanf("%d", &(pc->data[pos].age));
+		printf("请输入性别:");
+		scanf("%s", pc->data[pos].sex);
+		printf("请输入电话:");
+		scanf("%s", pc->data[pos].tele);
+		printf("请输入地址:");
+		scanf("%s", pc->data[pos].addr);
+		printf("修改成功\n");
+	}
+}
+
+void DestroyContact(Contact* pc)
+{
+	free(pc->data);
+	pc->data = NULL;
+	pc->capacity = 0;
+	pc->sz = 0;
+}
+
+void SaveContact(Contact* pc)
+{
+	FILE* pf = fopen("contact.dat", "wb");
+	if (pf == NULL)
+	{
+		perror("SaveContact");
+		return;
+	}
+	//写数据
+	int i = 0;
+	for (i = 0; i < pc->sz; i++)
+	{
+		fwrite(pc->data + i, sizeof(PeoInfo), 1, pf);
+	}
+	//关闭文件
+	fclose(pf);
+	pf = NULL;
+}

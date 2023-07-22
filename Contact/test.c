@@ -32,8 +32,10 @@ void test()
 			DelContact(&con);
 			break;
 		case SEARCH:
+			SearchContact(&con);
 			break;
 		case MODIFY:
+			ModifyContact(&con);
 			break;
 		case SHOW:
 			ShowContact(&con);
@@ -44,6 +46,9 @@ void test()
 			//按照年龄排序？
 			break;
 		case EXIT:
+			SaveContact(&con);
+			DestroyContact(&con);
+			printf("退出通讯录\n");
 			break;
 		default:
 			printf("选择错误，请重新选择\n");
