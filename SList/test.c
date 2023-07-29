@@ -9,6 +9,17 @@ void test()
 	SLTPushBack(&plist, 2);
 	SLTPushBack(&plist, 3);
 	SLTPrint(plist);
+
+	SLTPushFront(&plist, 10);
+	SLTPushFront(&plist, 20);
+	SLTPushFront(&plist, 30);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
 }
 
 int main()
