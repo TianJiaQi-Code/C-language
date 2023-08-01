@@ -80,6 +80,8 @@ void test3()
 		SLTEraseAfter(pos);
 	}
 	SLTPrint(plist);
+
+	SLTDestroy(&plist);
 }
 
 int main()

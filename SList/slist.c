@@ -172,3 +172,17 @@ void SLTEraseAfter(SLTNode* pos)
 	free(posNext);
 	posNext = NULL;
 }
+
+//Ïú»ÙÁ´±í
+void SLTDestroy(SLTNode** pphead)
+{
+	assert(pphead);
+	SLTNode* cur = *pphead;
+	while (cur)
+	{
+		SLTNode* next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	*pphead = NULL;
+}

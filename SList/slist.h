@@ -34,3 +34,5 @@ void SLTInsertAfter(SLTNode* pos, SLTDataType x);
 void SLTErase(SLTNode** pphead, SLTNode* pos);
 //删除pos的后一个位置
 void SLTEraseAfter(SLTNode* pos);
+//销毁链表
+void SLTDestroy(SLTNode** pphead);
