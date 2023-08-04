@@ -35,6 +35,9 @@ void test1()
 		LTErase(pos);
 		LTPrint(plist);
 	}
+
+	LTDestroy(plist);
+	plist = NULL;
 }
 
 int main()

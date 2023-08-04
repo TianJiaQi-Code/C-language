@@ -34,3 +34,5 @@ LTNode* LTFind(LTNode* phead, LTDataType x);
 void LTInsert(LTNode* pos, LTDataType x);
 //删除pos位置的节点
 void LTErase(LTNode* pos);
+//销毁链表
+void LTDestroy(LTNode* phead);

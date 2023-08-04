@@ -119,3 +119,17 @@ LTNode* LTFind(LTNode* phead, LTDataType x)
 	}
 	return NULL;
 }
+
+//Ïú»ÙÁ´±í
+void LTDestroy(LTNode* phead)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	while (cur != phead)
+	{
+		LTNode* next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	free(phead);
+}
