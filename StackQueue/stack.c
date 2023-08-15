@@ -1,6 +1,5 @@
 #include "stack.h"
 
-//初始化
 void STInit(ST* ps)
 {
 	assert(ps);
@@ -9,7 +8,6 @@ void STInit(ST* ps)
 	ps->top = 0;
 }
 
-//销毁
 void STDestroy(ST* ps)
 {
 	assert(ps);
@@ -19,7 +17,6 @@ void STDestroy(ST* ps)
 	ps->top = 0;
 }
 
-//插入
 void STPush(ST* ps, STDataType x)
 {
 	assert(ps);
@@ -39,7 +36,6 @@ void STPush(ST* ps, STDataType x)
 	ps->top++;
 }
 
-//删除
 void STPop(ST* ps)
 {
 	assert(ps);
@@ -47,7 +43,6 @@ void STPop(ST* ps)
 	ps->top--;
 }
 
-//返回栈顶元素
 STDataType STTop(ST* ps)
 {
 	assert(ps);
@@ -55,14 +50,12 @@ STDataType STTop(ST* ps)
 	return ps->a[ps->top - 1];
 }
 
-//计算栈的元素个数
 int STSize(ST* ps)
 {
 	assert(ps);
 	return ps->top;
 }
 
-//判断栈是否为空
 bool STEmpty(ST* ps)
 {
 	assert(ps);

@@ -13,17 +13,17 @@ typedef struct Stack
 	int capacity;
 }ST;
 
-//初始化
+//初始化栈
 void STInit(ST* ps);
-//销毁
+//销毁栈
 void STDestroy(ST* ps);
-//插入
+//入栈
 void STPush(ST* ps, STDataType x);
-//删除
+//出栈
 void STPop(ST* ps);
-//返回栈顶元素
+//获取栈顶元素
 STDataType STTop(ST* ps);
-//计算栈的元素个数
+//获取栈中有效元素个数
 int STSize(ST* ps);
-//判断栈是否为空
+//检测栈是否为空，如果为空返回非零结果，如果不为空返回0
 bool STEmpty(ST* ps);
