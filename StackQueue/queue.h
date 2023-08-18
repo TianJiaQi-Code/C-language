@@ -5,9 +5,8 @@
 #include <assert.h>
 #include <stdbool.h>
 
-typedef int QDataType;
-
 //链式结构：表示队列
+typedef int QDataType;
 typedef struct QueueNode
 {
 	struct QueueNode* next;

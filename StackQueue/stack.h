@@ -5,12 +5,13 @@
 #include <assert.h>
 #include <stdbool.h>
 
+//支持动态增长的栈
 typedef int STDataType;
 typedef struct Stack
 {
 	STDataType* a;
-	int top;
-	int capacity;
+	int top;//栈顶
+	int capacity;//容量
 }ST;
 
 //初始化栈
