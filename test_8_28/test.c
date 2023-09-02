@@ -1,3 +1,4 @@
+//循环队列的结构
 typedef struct
 {
     int* a;
