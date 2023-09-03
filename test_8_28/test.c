@@ -7,7 +7,7 @@ typedef struct
     int k;
 } MyCircularQueue;
 
-
+//开辟空间并初始化
 MyCircularQueue* myCircularQueueCreate(int k)
 {
     MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
