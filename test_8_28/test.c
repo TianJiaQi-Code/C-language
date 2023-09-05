@@ -18,6 +18,7 @@ MyCircularQueue* myCircularQueueCreate(int k)
     return obj;
 }
 
+//判断队列是否为空
 bool myCircularQueueIsEmpty(MyCircularQueue* obj)
 {
     return obj->front == obj->rear;
