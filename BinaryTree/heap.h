@@ -1,23 +1,37 @@
 #pragma once
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <stdbool.h>
+
 typedef int HPDataType;
 typedef struct Heap
 {
-	HPDataType* _a;
-	int _size;
-	int _capacity;
-}Heap;
+	HPDataType* a;
+	int size;
+	int capacity;
+}HP;
 
-// 堆的构建
-void HeapCreate(Heap* hp, HPDataType* a, int n);
+// 向上调整
+void AdjustUp(HPDataType* a, int child);
+// 向下调整
+void AdjustDowm(HPDataType* a, int n, int parent);
+// 交换
+void Swap(HPDataType* p1, HPDataType* p2);
+// 打印堆
+void HeapPrint(HP* php);
+// 堆的初始化
+void HeapInit(HP* php);
+// 堆的初始化（数组）
+void HeapInitArray(HP* php, int* a, int n);
 // 堆的销毁
-
+void HeapDestroy(HP* php);
 // 堆的插入
-
+void HeapPush(HP* php, HPDataType x);
 // 堆的删除
-
+void HeapPop(HP* php);
 // 取堆顶的数据
-
-// 堆的数据个数
-
+HPDataType HeapTop(HP* php);
 // 堆的判空
+bool HeapEmpty(HP* php);
