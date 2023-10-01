@@ -1,4 +1,5 @@
-#include "Sort.h"
+ï»¿#include "Sort.h"
+#include "stack.h"
 
 void PrintArray(int* a, int n)
 {
@@ -88,7 +89,7 @@ void AdjustDown(int* a, int n, int parent)
 	int child = parent * 2 + 1;
 	while (child < n)
 	{
-		// ÕÒ³öĞ¡µÄÄÇ¸öº¢×Ó
+		// æ‰¾å‡ºå°çš„é‚£ä¸ªå­©å­
 		if (child + 1 < n && a[child + 1] > a[child])
 		{
 			++child;
@@ -96,7 +97,7 @@ void AdjustDown(int* a, int n, int parent)
 		if (a[child] > a[parent])
 		{
 			Swap(&a[child], &a[parent]);
-			// ¼ÌĞøÍùÏÂµ÷Õû
+			// ç»§ç»­å¾€ä¸‹è°ƒæ•´
 			parent = child;
 			child = parent * 2 + 1;
 		}
@@ -109,7 +110,7 @@ void AdjustDown(int* a, int n, int parent)
 
 void HeapSort(int* a, int n)
 {
-	// ÏòÏÂµ÷Õû½¨¶Ñ
+	// å‘ä¸‹è°ƒæ•´å»ºå †
 	for (int i = (n - 1 - 1) / 2; i >= 0; i--)
 	{
 		AdjustDown(a, n, i);
@@ -141,7 +142,7 @@ void SelectSort(int* a, int n)
 			}
 		}
 		Swap(&a[begin], &a[mini]);
-		// maxÈç¹û±»»»×ßÁË£¬ĞŞÕıÒ»ÏÂ
+		// maxå¦‚æœè¢«æ¢èµ°äº†ï¼Œä¿®æ­£ä¸€ä¸‹
 		if (maxi == begin)
 		{
 			maxi = mini;
@@ -152,7 +153,7 @@ void SelectSort(int* a, int n)
 	}
 }
 
-// ÈıÊıÈ¡ÖĞ
+// ä¸‰æ•°å–ä¸­
 int GetMidi(int* a, int left, int right)
 {
 	int mid = (left + right) / 2;
@@ -162,7 +163,7 @@ int GetMidi(int* a, int left, int right)
 		{
 			return mid;
 		}
-		else if (a[left] > a[right])	// midÊÇ×î´óÖµ
+		else if (a[left] > a[right])	// midæ˜¯æœ€å¤§å€¼
 		{
 			return left;
 		}
@@ -177,7 +178,7 @@ int GetMidi(int* a, int left, int right)
 		{
 			return mid;
 		}
-		else if (a[left] < a[right])	// midÊÇ×îĞ¡Öµ
+		else if (a[left] < a[right])	// midæ˜¯æœ€å°å€¼
 		{
 			return left;
 		}
@@ -188,7 +189,7 @@ int GetMidi(int* a, int left, int right)
 	}
 }
 
-// ¿ìËÙÅÅĞòHoare°æ±¾
+// å¿«é€Ÿæ’åºHoareç‰ˆæœ¬
 int PartSort1(int* a, int left, int right)
 {
 	int midi = GetMidi(a, left, right);
@@ -196,12 +197,12 @@ int PartSort1(int* a, int left, int right)
 	int keyi = left;
 	while (left < right)
 	{
-		// ÕÔĞ¡
+		// èµµå°
 		while (left < right && a[right] >= a[keyi])
 		{
 			--right;
 		}
-		// ÕÒ´ó
+		// æ‰¾å¤§
 		while (left < right && a[left] <= a[keyi])
 		{
 			++left;
@@ -212,24 +213,24 @@ int PartSort1(int* a, int left, int right)
 	return left;
 }
 
-// ¿ìËÙÅÅĞòÍÚ¿Ó·¨
+// å¿«é€Ÿæ’åºæŒ–å‘æ³•
 int PartSort2(int* a, int left, int right)
 {
 	int midi = GetMidi(a, left, right);
 	Swap(&a[left], &a[midi]);
 	int key = a[left];
-	// ±£´ækeyµÄÖµºó£¬×ó±ßĞÎ³ÉµÚÒ»¸ö¿Ó
+	// ä¿å­˜keyçš„å€¼åï¼Œå·¦è¾¹å½¢æˆç¬¬ä¸€ä¸ªå‘
 	int hole = left;
 	while (left < right)
 	{
-		// ÓÒ±ßÏÈ×ß£¬ÕÒĞ¡£¬Ìîµ½×ó±ßµÄ¿Ó£¬ÓÒ±ßĞÎ³ÉĞÂµÄ¿ÓÎ»
+		// å³è¾¹å…ˆèµ°ï¼Œæ‰¾å°ï¼Œå¡«åˆ°å·¦è¾¹çš„å‘ï¼Œå³è¾¹å½¢æˆæ–°çš„å‘ä½
 		while (left < right && a[right] >= key)
 		{
 			--right;
 		}
 		a[hole] = a[right];
 		hole = right;
-		// ×ó±ßÔÙ×ß£¬ÕÒ´ó£¬Ìîµ½ÓÒ±ßµÄ¿Ó£¬×ó±ßĞÎ³ÉĞÂµÄ¿ÓÎ»
+		// å·¦è¾¹å†èµ°ï¼Œæ‰¾å¤§ï¼Œå¡«åˆ°å³è¾¹çš„å‘ï¼Œå·¦è¾¹å½¢æˆæ–°çš„å‘ä½
 		while (left < right && a[left] <= key)
 		{
 			++left;
@@ -241,7 +242,7 @@ int PartSort2(int* a, int left, int right)
 	return hole;
 }
 
-// ¿ìËÙÅÅĞòÇ°ºóÖ¸Õë·¨
+// å¿«é€Ÿæ’åºå‰åæŒ‡é’ˆæ³•
 int PartSort3(int* a, int left, int right)
 {
 	int midi = GetMidi(a, left, right);
@@ -261,6 +262,23 @@ int PartSort3(int* a, int left, int right)
 	return prev;
 }
 
+void QuickSort1(int* a, int begin, int end)
+{
+	if (begin >= end)
+		return;
+	// å°åŒºé—´ä¼˜åŒ–ï¼Œå°åŒºé—´ä¸å†é€’å½’åˆ†å‰²æ’åºï¼Œé™ä½é€’å½’æ¬¡æ•°
+	if ((end - begin + 1) > 10)
+	{
+		int keyi = PartSort3(a, begin, end);
+		QuickSort1(a, begin, keyi - 1);
+		QuickSort1(a, keyi + 1, end);
+	}
+	else
+	{
+		InsertSort(a + begin, end - begin + 1);
+	}
+}
+
 void QuickSort(int* a, int begin, int end)
 {
 	if (begin >= end)
@@ -270,4 +288,167 @@ void QuickSort(int* a, int begin, int end)
 	int keyi = PartSort3(a, begin, end);
 	QuickSort(a, begin, keyi - 1);
 	QuickSort(a, keyi + 1, end);
+}
+
+void QuickSortNonR(int* a, int begin, int end)
+{
+	ST st;
+	STInit(&st);
+	STPush(&st, end);
+	STPush(&st, begin);
+	while (!STEmpty(&st))
+	{
+		int left = STTop(&st);
+		STPop(&st);
+		int right = STTop(&st);
+		STPop(&st);
+		int keyi = PartSort1(a, left, right);
+		if (keyi + 1 < right)
+		{
+			STPush(&st, right);
+			STPush(&st, keyi + 1);
+		}
+		if (left < keyi - 1)
+		{
+			STPush(&st, keyi - 1);
+			STPush(&st, left);
+		}
+	}
+	STDestroy(&st);
+}
+
+void _MergeSort(int* a, int* tmp, int begin, int end)
+{
+	if (end <= begin)
+		return;
+	int mid = (end + begin) / 2;
+	// [begin, mid] [mid + 1, end]
+	_MergeSort(a, tmp, begin, mid);
+	_MergeSort(a, tmp, mid + 1, end);
+	// å½’å¹¶åˆ°tmpæ•°ç»„ï¼Œå†æ‹·è´å›å»
+	int begin1 = begin, end1 = mid;
+	int begin2 = mid + 1, end2 = end;
+	int index = begin;
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (a[begin1] < a[begin2])
+		{
+			tmp[index++] = a[begin1++];
+		}
+		else
+		{
+			tmp[index++] = a[begin2++];
+		}
+	}
+	while (begin1 <= end1)
+	{
+		tmp[index++] = a[begin1++];
+	}
+	while (begin2 <= end2)
+	{
+		tmp[index++] = a[begin2++];
+	}
+	// æ‹·è´å›åŸæ•°ç»„
+	memcpy(a + begin, tmp + begin, (end - begin + 1) * sizeof(int));
+}
+
+void MergeSort(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("malloc fail");
+		return;
+	}
+	_MergeSort(a, tmp, 0, n - 1);
+	free(tmp);
+}
+
+void MergeSortNonR(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("malloc fail");
+		return;
+	}
+	int gap = 1;
+	while (gap < n)
+	{
+		for (int i = 0; i < n; i += 2 * gap)
+		{
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+			// [begin1, end1] [begin2, end2] å½’å¹¶
+			// å¦‚æœç¬¬äºŒç»„ä¸å­˜åœ¨ï¼Œè¿™ä¸€ç»„ä¸ç”¨å½’å¹¶äº†
+			if (begin2 >= n)
+			{
+				break;
+			}
+			// å¦‚æœç¬¬äºŒç»„çš„å³è¾¹ç•Œè¶Šç•Œï¼Œä¿®æ­£ä¸€ä¸‹
+			if (end2 >= n)
+			{
+				end2 = n - 1;
+			}
+			int index = i;
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[index++] = a[begin1++];
+				}
+				else
+				{
+					tmp[index++] = a[begin2++];
+				}
+			}
+			while (begin1 <= end1)
+			{
+				tmp[index++] = a[begin1++];
+			}
+			while (begin2 <= end2)
+			{
+				tmp[index++] = a[begin2++];
+			}
+			// æ‹·è´å›åŸæ•°ç»„
+			memcpy(a + i, tmp + i, (end2 - i + 1) * sizeof(int));
+		}
+		gap *= 2;
+	}
+	free(tmp);
+}
+
+void CountSort(int* a, int n)
+{
+	int min = a[0], max = a[0];
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < min)
+			min = a[i];
+		if (a[i] > max)
+			max = a[i];
+	}
+	int range = max - min + 1;
+	int* count = (int*)malloc(sizeof(int) * range);
+	printf("range:%d\n", range);
+	if (count == NULL)
+	{
+		perror("malloc fail");
+		return;
+	}
+	memset(count, 0, sizeof(int) * range);
+	// ç»Ÿè®¡æ•°æ®å‡ºç°æ¬¡æ•°
+	for (int i = 0; i < n; i++)
+	{
+		count[a[i] - min]++;
+	}
+	// æ’åº
+	int j = 0;
+	for (int i = 0; i < range; i++)
+	{
+		while (count[i]--)
+		{
+			a[j++] = i + min;
+		}
+	}
 }
