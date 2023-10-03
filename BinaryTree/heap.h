@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <string.h>
+#include <time.h>
 
 typedef int HPDataType;
 typedef struct Heap
@@ -16,7 +18,7 @@ typedef struct Heap
 // 向上调整
 void AdjustUp(HPDataType* a, int child);
 // 向下调整
-void AdjustDowm(HPDataType* a, int n, int parent);
+void AdjustDown(HPDataType* a, int n, int parent);
 // 交换
 void Swap(HPDataType* p1, HPDataType* p2);
 // 打印堆
