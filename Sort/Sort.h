@@ -14,7 +14,7 @@ void BubbleSort(int* a, int n);
 void HeapSort(int* a, int n);
 // 选择排序
 void SelectSort(int* a, int n);
-// 快速排序
+// 快速排序 递归实现
 void QuickSort(int* a, int begin, int end);
 // 快速排序 小区间优化
 void QuickSort1(int* a, int begin, int end);

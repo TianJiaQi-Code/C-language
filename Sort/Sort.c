@@ -197,7 +197,7 @@ int PartSort1(int* a, int left, int right)
 	int keyi = left;
 	while (left < right)
 	{
-		// 赵小
+		// 找小
 		while (left < right && a[right] >= a[keyi])
 		{
 			--right;
