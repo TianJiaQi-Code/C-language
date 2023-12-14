@@ -7,6 +7,13 @@
 #include <windows.h>
 #include <locale.h>
 
+#define WALL L'□'
+#define BODY L'●'
+#define FOOD L'★'
+
+#define POS_X 24
+#define POS_Y 5
+
 enum DIRECTION
 {
 	UP = 1,
@@ -50,3 +57,13 @@ typedef struct Snake
 
 // 游戏开始 - 完成游戏的初始化动作
 void GameStart(pSnake ps);
+// 定位坐标
+void SetPos(short x, short y);
+// 游戏开始的欢迎界面
+void WelComeToGame();
+// 打印地图
+void CreateMap();
+// 初始化贪吃蛇
+void InitSnake(pSnake ps);
+// 创建食物
+void CreateFood(pSnake ps);

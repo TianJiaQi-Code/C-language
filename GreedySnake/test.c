@@ -17,6 +17,7 @@ int main()
 {
 	// 设置程序适应本地环境
 	setlocale(LC_ALL, "");
+	srand((unsigned int)time(NULL));
 
 	test();
 
