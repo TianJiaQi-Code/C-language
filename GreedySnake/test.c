@@ -4,7 +4,7 @@
 
 void test()
 {
-	Snake snake = { 0 };// 创建了贪吃蛇
+	Snake snake = { 0 };	// 创建了贪吃蛇
 	// 1. 游戏开始 - 初始化游戏
 	GameStart(&snake);
 	// 2. 游戏运行 - 游戏的正常运行过程
