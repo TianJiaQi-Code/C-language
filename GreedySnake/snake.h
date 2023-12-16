@@ -14,6 +14,8 @@
 #define POS_X 24
 #define POS_Y 5
 
+#define KEY_PRESS(VK) ((GetAsyncKeyState(VK) & 0x1) ? 1 : 0)
+
 enum DIRECTION
 {
 	UP = 1,
@@ -67,3 +69,23 @@ void CreateMap();
 void InitSnake(pSnake ps);
 // 创建食物
 void CreateFood(pSnake ps);
+// 游戏正常运行
+void GameRun(pSnake ps);
+// 打印帮助信息
+void PrintHelpInfo();
+// 游戏暂停和恢复
+void Pause();
+// 蛇的移动
+void SnakeMove(pSnake ps);
+// 判断蛇头到达的坐标处是否是食物，是食物返回1，否则返回0
+int NextIsFood(pSnake ps, pSnakeNode pnext);
+// 吃掉食物
+void EatFood(pSnake ps, pSnakeNode pnext);
+// 不吃食物
+void NoFood(pSnake ps, pSnakeNode pnext);
+// 蛇是否撞墙
+void KillByWall(pSnake ps);
+// 蛇是否自杀
+void KillBySelf(pSnake ps);
+// 游戏结束后的善后处理
+void GameEnd(pSnake ps);
