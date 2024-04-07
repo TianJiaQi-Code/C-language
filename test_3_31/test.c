@@ -1,24 +1,24 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
-#include<stdio.h>
-int main() {
-	int a[4][4] = { {1,3,9,8},{24,18,8,3},{10,24,8,40},
-	{46,36,9,10} };
-	int i, j;
-	for (i = 0; i < 4; i++)
-		for (j = 0; j < 4; j++)
-			if (a[i][j] > a[j][i])
-				a[j][i] = a[i][j];
-	for (i = 0; i < 4; i++) {
-		for (j = 0; j < 4; j++)
-			if (j >= i)
-				printf("%6d", a[i][j]);
-			else
-				printf("%6d", '_');
-		printf("\n");
-	}
-	return 0;
-}
+//#include<stdio.h>
+//int main() {
+//	int a[4][4] = { {1,3,9,8},{24,18,8,3},{10,24,8,40},
+//	{46,36,9,10} };
+//	int i, j;
+//	for (i = 0; i < 4; i++)
+//		for (j = 0; j < 4; j++)
+//			if (a[i][j] > a[j][i])
+//				a[j][i] = a[i][j];
+//	for (i = 0; i < 4; i++) {
+//		for (j = 0; j < 4; j++)
+//			if (j >= i)
+//				printf("%6d", a[i][j]);
+//			else
+//				printf("%6d", '_');
+//		printf("\n");
+//	}
+//	return 0;
+//}
 
 //#include<stdio.h>
 //int f(int a) {
